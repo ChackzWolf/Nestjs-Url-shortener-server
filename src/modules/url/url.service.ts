@@ -32,8 +32,7 @@ export class UrlService {
     if (!url) {
       throw new NotFoundException('URL not found');
     }
-
-    await this.urlRepository.incrementVisitCount(url.id);
+    await this.urlRepository.incrementVisitCount(url._id as string);
     return url.originalUrl;
   }
 
@@ -58,4 +57,4 @@ export class UrlService {
       .digest('hex')
       .substring(0, 6);
   }
-}
+} 

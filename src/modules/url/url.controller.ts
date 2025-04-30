@@ -28,6 +28,7 @@ export class UrlController {
   @UseGuards(JwtAuthGuard)
   @Get('my-urls')
   async getMyUrls(@Req() req): Promise<UrlResponseDto[]> {
+    console.log(req.user, 'req.user')
     return this.urlService.getUserUrls(req.user.id);
   }
 
@@ -37,6 +38,7 @@ export class UrlController {
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async deleteUrl(@Param('id') id: string, @Req() req): Promise<void> {
+    console.log('triggered delete', id)
     return this.urlService.deleteUrl(id, req.user.id);
   }
 
