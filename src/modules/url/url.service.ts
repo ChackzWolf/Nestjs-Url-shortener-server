@@ -23,7 +23,7 @@ export class UrlService {
       userId: new Types.ObjectId(userId),
     });
 
-    const baseUrl = this.configService.get<string>('BASE_URL', 'http://localhost:3000');
+    const baseUrl = this.configService.get<string>('BASE_URL', 'https://url-shortener-jack-two.vercel.app');
     return new UrlResponseDto(url, baseUrl);
   }
 
@@ -38,7 +38,7 @@ export class UrlService {
 
   async getUserUrls(userId: string): Promise<UrlResponseDto[]> {
     const urls = await this.urlRepository.findAllByUserId(userId);
-    const baseUrl = this.configService.get<string>('BASE_URL', 'http://localhost:3000');
+    const baseUrl = this.configService.get<string>('BASE_URL', 'https://url-shortener-jack-two.vercel.app');
     return urls.map(url => new UrlResponseDto(url, baseUrl));
   }
 
