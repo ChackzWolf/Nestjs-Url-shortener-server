@@ -23,7 +23,7 @@ export class UrlRepository implements IUrlRepository {
 
   async findAllByUserId(userId: string): Promise<UrlDocument[]> {
     // return this.urlModel.find().exec();
-    return this.urlModel.find({ userId: new Types.ObjectId(userId) }).exec();
+    return this.urlModel.find({ userId: new Types.ObjectId(userId)}).exec();
   }
 
   async incrementVisitCount(id: string): Promise<void> {

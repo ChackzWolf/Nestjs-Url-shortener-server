@@ -8,7 +8,7 @@ import { UrlService } from './url.service';
 @ApiTags('url')
 @Controller('url')
 export class UrlController {
-  constructor(private readonly urlService: UrlService) {}
+  constructor(private readonly urlService: UrlService) { }
 
   @ApiOperation({ summary: 'Create a shortened URL' })
   @ApiResponse({ status: 201, type: UrlResponseDto })
@@ -28,7 +28,7 @@ export class UrlController {
   @UseGuards(JwtAuthGuard)
   @Get('my-urls')
   async getMyUrls(@Req() req): Promise<UrlResponseDto[]> {
-    console.log(req.user, 'req.user')
+    console.log(req.user, 'Get my urls triggered')
     return this.urlService.getUserUrls(req.user.id);
   }
 
@@ -48,6 +48,7 @@ export class UrlController {
   @Redirect()
   async redirectToOriginalUrl(@Param('shortCode') shortCode: string) {
     const originalUrl = await this.urlService.getOriginalUrl(shortCode);
+    console.log(originalUrl, 'the orginal url')
     return { url: originalUrl, statusCode: 302 };
   }
 }
