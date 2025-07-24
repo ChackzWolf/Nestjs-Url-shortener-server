@@ -45,7 +45,7 @@ export class UrlController {
   @ApiOperation({ summary: 'Redirect to the original URL' })
   @ApiResponse({ status: 302, description: 'Redirect to the original URL' })
   @Get(':shortCode')
-  @Redirect()
+  // @Redirect()
   async redirectToOriginalUrl(@Param('shortCode') shortCode: string) {
     const originalUrl = await this.urlService.getOriginalUrl(shortCode);
     console.log(originalUrl, 'the orginal url')
